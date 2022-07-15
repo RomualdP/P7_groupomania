@@ -25,7 +25,7 @@ module.exports.updateUser = async (req, res) => {
     { _id: req.params.id },
     {
       $set: {
-        bio: req.body.bio,
+        position: req.body.position,
       },
     }
   )
@@ -69,6 +69,6 @@ module.exports.unfollow = async (req, res) => {
       },
     }
   )
-    .then(() => res.status(200).json({ message: "New topic followed !" }))
+    .then(() => res.status(200).json({ message: "Topic unfollowed!" }))
     .catch((error) => res.status(400).json({ error }));
 };

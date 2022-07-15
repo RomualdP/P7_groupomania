@@ -4,13 +4,11 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    pseudo: {
+    firstname: {
       type: String,
-      required: true,
-      minLength: 3,
-      maxLength: 55,
-      unique: true,
-      trim: true,
+    },
+    lastname: {
+      type: String,
     },
     email: {
       type: String,
@@ -30,7 +28,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "./uploads/profil/random-user.png",
     },
-    bio: {
+    position: {
       type: String,
       max: 1024,
     },
