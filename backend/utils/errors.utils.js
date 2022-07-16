@@ -1,5 +1,5 @@
 module.exports.signUpErrors = (err) => {
-  console.log(err);
+  console.log(err.message);
   let errors = { email: "", password: "" };
 
   if (err.message.includes("email")) errors.email = "Format d'email incorrect";
