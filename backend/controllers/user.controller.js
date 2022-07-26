@@ -29,7 +29,7 @@ module.exports.updateUser = async (req, res) => {
       },
     }
   )
-    .then(() => res.status(200).json({ message: "Bio modified !" }))
+    .then(() => res.status(200).json({ message: "Position modified !" }))
     .catch((error) => res.status(400).json({ error }));
 };
 
