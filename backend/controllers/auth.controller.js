@@ -1,7 +1,7 @@
 const UserModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { signUpErrors, signInErrors } = require("../utils/errors.utils");
+const { signUpErrors } = require("../utils/errors.utils");
 
 const maxAge = 24 * 60 * 60 * 1000;
 const createToken = (id) => {
@@ -12,13 +12,24 @@ const createToken = (id) => {
 
 module.exports.signUp = async (req, res) => {
   const { email, password } = req.body;
+  const getFirstname = email.split(".")[0];
+  const getLastname = email.split(".")[1].split("@")[0];
+
+  const firstname =
+    getFirstname.charAt(0).toUpperCase() + getFirstname.slice(1);
+  const lastname = getLastname.charAt(0).toUpperCase() + getLastname.slice(1);
 
   try {
-    const user = await UserModel.create({ email, password });
+    const user = await UserModel.create({
+      email,
+      password,
+      firstname,
+      lastname,
+    });
     res.status(201).json({ user: user._id });
   } catch (err) {
     const errors = signUpErrors(err);
-    res.status(401).send({ errors });
+    res.status(200).send({ errors });
   }
 };
 
@@ -27,13 +38,17 @@ module.exports.signIn = async (req, res) => {
   UserModel.findOne({ email })
     .then((user) => {
       if (!user) {
-        return res.status(401).json({ error: "Utilisateur inconnu" });
+        return res
+          .status(200)
+          .send({ error: "Utilisateur inconnu ou mot de passe incorrect" });
       }
       bcrypt
         .compare(password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res.status(401).json({ error });
+            return res
+              .status(200)
+              .send({ error: "Utilisateur inconnu ou mot de passe incorrect" });
           }
           const token = createToken(user._id);
           res.cookie("jwt", token, { httpOnly: true, maxAge });
@@ -42,12 +57,11 @@ module.exports.signIn = async (req, res) => {
         .catch((error) => res.status(401).json({ error }));
     })
     .catch((err) => {
-      const errors = signInErrors(err);
-      res.status(401).send({ errors });
+      res.status(401).send({ err });
     });
 };
 
-module.exports.logout = async (req, res) => {
+module.exports.logout = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/");
 };

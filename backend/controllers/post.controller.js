@@ -9,13 +9,24 @@ module.exports.getPost = (req, res) => {
   }).sort({ createdAt: -1 });
 };
 module.exports.createPost = async (req, res) => {
-  const post = new PostModel({
-    posterId: req.body.posterId,
-    message: req.body.message,
-    picture: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-    likers: [],
-    comments: [],
-  });
+  let postData = {};
+  if (req.file) {
+    postData = {
+      posterId: req.body.posterId,
+      message: req.body.message,
+      picture: `../images/${req.file.filename}`,
+      likers: [],
+      comments: [],
+    };
+  } else {
+    postData = {
+      posterId: req.body.posterId,
+      message: req.body.message,
+      likers: [],
+      comments: [],
+    };
+  }
+  const post = new PostModel(postData);
 
   post
     .save()
@@ -26,11 +37,19 @@ module.exports.createPost = async (req, res) => {
 module.exports.updatePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
+  let updatedRecord = {};
 
-  const updatedRecord = {
-    message: req.body.message,
-    picture: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-  };
+  if (req.file) {
+    updatedRecord = {
+      message: req.body.message,
+      picture: `../images/${req.file.filename}`,
+    };
+  } else {
+    updatedRecord = {
+      message: req.body.message,
+    };
+  }
+
   PostModel.updateOne(
     { _id: req.params.id },
     {

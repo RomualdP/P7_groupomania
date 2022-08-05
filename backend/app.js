@@ -12,7 +12,15 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3001",
+  credentials: true,
+  allowedHeaders: ["sessionId", "Content-Type"],
+  exposedHeaders: ["sessionId"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+};
+app.use(cors(corsOptions));
 
 app.get("*", verifyUser);
 app.get("/jwtid", requireAuth, (req, res) => {
