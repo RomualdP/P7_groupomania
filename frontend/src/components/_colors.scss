@@ -1,0 +1,15 @@
+$colorPrimary:#FD2D01;
+$colorSecondary:#FFD7D7;
+$colorTertiary:#4E5166;
+
+.color {
+    &Primary {
+        color: #FD2D01;
+    }
+    &Secondary {
+        color: #FFD7D7;
+    }
+    &Tertiary {
+        color: #4E5166;
+    }
+}

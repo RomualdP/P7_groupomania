@@ -1,0 +1,12 @@
+main {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 80px;
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    grid-gap: 32px;
+}
+

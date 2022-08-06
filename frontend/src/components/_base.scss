@@ -1,0 +1,51 @@
+
+   
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body {
+    margin:0;
+    font-family: 'Lato', sans-serif;
+    background-color: #F8F8F8;
+    position: relative;
+}
+a {
+    text-decoration: none;
+    color:inherit;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style-type: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+button {
+    padding: 10px;
+    border-radius: 20px;
+    color: $colorTertiary;
+    background-color: $colorSecondary;
+    border: 0px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    align-self: center;
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &:hover {
+        background-color: darken($colorSecondary, 3%);
+    }
+}

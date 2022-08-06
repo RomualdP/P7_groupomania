@@ -1,0 +1,57 @@
+.profil {
+    position: fixed;
+    width: 300px;
+    &--bloc {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        padding: 20px;
+        background-color: white;
+        & img {
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        & form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          
+            & input[type=text] {
+                width: 100%;
+                background-color: #fff;
+                border-radius: 10px;
+                border: none;
+                box-shadow: inset rgba(0, 0, 0, 0.24) 0px 1px 4px;
+                height: 2rem;
+            }
+
+        }
+        & h4 {
+            margin-bottom: 0px;
+        }
+    }
+    &--editbutton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+.inputPicture {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    color: $colorTertiary;
+    background-color: $colorSecondary;
+    border: 0px;
+    width: 150px;
+    margin: 20px;
+    align-self: center;
+    & input {
+        display: none;
+    }
+}

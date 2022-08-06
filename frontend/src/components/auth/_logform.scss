@@ -1,0 +1,68 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    
+    &--form {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        justify-content: center;
+        &__modal {
+            display: flex;
+            flex-direction: column;
+        }
+        &__type {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 20px 0 30px 0;
+            & li {
+                padding:20px;
+            }
+        
+        }
+        &__input {
+            margin: 10px 0;
+            height: 40px;
+            border-radius: 10px;
+            padding: 0 10px;
+            box-shadow: inset rgba(0, 0, 0, 0.24) 0px 1px 4px;
+            border: none;
+        }
+        &__button {
+            padding: 10px;
+            border-radius: 20px;
+            color: $colorTertiary;
+            background-color: $colorSecondary;
+            border: 0px;
+            width: 150px;
+            margin: 30px 0 10px 0;
+            align-self: center;
+            font-weight: 700;
+            &:hover {
+                background-color: darken($colorSecondary, 3%);
+            }
+        }
+    }
+
+    &--heading {
+        text-align: center;
+    }
+}
+
+
+.active--form {
+    background-color: $colorSecondary;
+    color: $colorTertiary;
+    font-weight: 900;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.passwordCkeckError {
+    color: red;
+}
