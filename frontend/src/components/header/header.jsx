@@ -7,7 +7,6 @@ import Logout from "../auth/logout";
 
 export default function Header() {
   const uid = useContext(UidContext);
-  const userData = useSelector((state) => state.userReducer);
 
   return (
     <header>

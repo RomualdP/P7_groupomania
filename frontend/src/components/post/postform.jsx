@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function PostForm() {
-  const userData = useSelector((state) => state.userReducer);
+  const userData = useSelector((state) => state.user.user);
   const [message, setMessage] = useState();
   const [picture, setPicture] = useState();
 

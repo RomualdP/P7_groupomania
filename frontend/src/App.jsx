@@ -5,7 +5,7 @@ import Home from "./page/home";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { getUser } from "./actions/user.actions";
 import { setUserData } from "./feature/user.slice";
 // import NewPost from "./components/newpost";
@@ -15,9 +15,10 @@ function App() {
   const dispatch = useDispatch();
 
   const getUserData = (uid) => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}api/user/${uid}`)
-      .then((res) => dispatch(setUserData(res.data)));
+    axios.get(`${process.env.REACT_APP_API_URL}api/user/${uid}`).then((res) => {
+      console.log(res);
+      dispatch(setUserData(res.data));
+    });
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function App() {
         .catch((err) => console.log("No Token"));
     };
     getToken();
-    if (uid) dispatch(getUserData(uid));
+    if (uid) getUserData(uid);
   });
   return (
     <UidContext.Provider value={uid}>

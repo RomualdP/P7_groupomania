@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/pro-light-svg-icons";
 
 export default function Profil() {
-  const userData = useSelector((state) => state.userReducer);
+  const userData = useSelector((state) => state.user.user);
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState();
   const inputPosition = useRef();
