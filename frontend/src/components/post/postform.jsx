@@ -1,14 +1,16 @@
 import "../../style.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faPaperPlane } from "@fortawesome/pro-light-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+import { addPost, setAllPosts } from "../../feature/post.slice";
 
 export default function PostForm() {
   const userData = useSelector((state) => state.user.user);
   const [message, setMessage] = useState();
   const [picture, setPicture] = useState();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,8 @@ export default function PostForm() {
     axios
       .post(`${process.env.REACT_APP_API_URL}api/post`, postData)
       .then((res) => {
-        console.log(res);
+        dispatch(addPost(res));
+        dispatch(setAllPosts());
       })
       .catch((err) => {
         console.log(err);

@@ -1,7 +1,6 @@
 import "../../style.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { useSelector } from "react-redux";
 import { UidContext } from "../../AppContext";
 import Logout from "../auth/logout";
 

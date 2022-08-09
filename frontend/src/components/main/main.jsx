@@ -5,15 +5,15 @@ import { faCircleLeft, faCircleRight } from "@fortawesome/free-solid-svg-icons";
 // import MostPopular from '../mostpopular/mostpopular';
 import Post from "../post/post";
 import Info from "../info/info";
-import postDB from "../../models/postDB";
 import "../../style.css";
 import PostForm from "../post/postform";
 import Profil from "../profil/profil";
 
+import { useSelector } from "react-redux";
+
 export default function Main() {
-  const postInfos = postDB.map((info) => {
-    return <Post key={info.id} info={info} />;
-  });
+  const postData = useSelector((state) => state.post.post);
+
   return (
     <main className="container">
       <Profil />
@@ -23,7 +23,12 @@ export default function Main() {
         {/* <!-- end of most popular section  --> */}
 
         {/* <!-- start of post  --> */}
-        {postInfos}
+        <div>
+          {postData.map((post) => {
+            return <Post post={post} key={post._id} />;
+          })}
+        </div>
+
         {/* <!-- end of post  --> */}
 
         <div className="navArrow">

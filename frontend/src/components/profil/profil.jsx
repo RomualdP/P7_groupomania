@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../actions/user.actions";
+import { updateUserData } from "../../feature/user.slice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/pro-light-svg-icons";
+import { dateParser } from "../utils";
+import axios from "axios";
 
 export default function Profil() {
   const userData = useSelector((state) => state.user.user);
@@ -12,12 +14,21 @@ export default function Profil() {
   const inputPosition = useRef();
   const dispatch = useDispatch();
 
-  const editProfil = (e) => {
+  const editProfil = async (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("picture", file);
     data.append("position", inputPosition.current.value);
-    dispatch(updateUser(data, userData._id));
+
+    await axios
+      .put(`${process.env.REACT_APP_API_URL}api/user/${userData._id}`, data)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(updateUserData(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -30,6 +41,9 @@ export default function Profil() {
           <img src={userData.picture} alt="profil" />
           <h4>Poste :</h4>
           <span>{userData.position}</span>
+          <br />
+          <span>Membre du réseau depuis le :</span>
+          <span>{dateParser(userData.createdAt)}</span>
           <span className="profil--editbutton">
             <FontAwesomeIcon
               icon={faPenToSquare}
