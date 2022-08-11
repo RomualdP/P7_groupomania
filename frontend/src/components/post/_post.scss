@@ -30,14 +30,11 @@
             color: #9C9A9A;
         } 
     }
-    &--tag {
-        background-color: #FD2D01;
-        opacity: 50%;
-        border-radius: 20px;
-        padding: 10px 20px 10px 20px;
-        & span {
-            font-weight: 700;
-            color: #fff;
+    &--edit>*{
+            margin-left: 10px;
+            opacity: 50%;
+            &:hover {
+                opacity: 100%;
         }
     }
     &--description {
@@ -62,11 +59,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 50%;
         }
         &__icon {
-            font-size: 40px;
-            color: #FD2D01;
+            font-size: 2rem;
+            color: $colorSecondary;
+            margin-right: 20px;
         }
     }
     &--comment {
@@ -76,6 +73,28 @@
             justify-content: space-between;
             align-items: center;
         }
+        &form{
+            display: grid;
+            grid-template-columns: 40px 1fr 40px;
+            justify-content: space-between;
+            column-gap: 10px;
+            align-items: center;
+            & > input{
+                    width: 100%;
+                    max-width: 100%;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    border: none;
+                    box-shadow: inset rgba(0, 0, 0, 0.24) 0px 1px 4px;
+                    padding: 10px;
+                    font-family: inherit;
+                
+            }
+            & button {
+                justify-content: center;
+            }
+        }
+        
     }
 }
 

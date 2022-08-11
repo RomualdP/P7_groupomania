@@ -83,16 +83,16 @@ module.exports.deletePost = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-module.exports.likePost = async (req, res) => {
+module.exports.likePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
   PostModel.updateOne(
     { _id: req.params.id },
     {
-      $addToSet: { likers: req.body.id },
+      $push: { likers: req.body.id },
     },
-    { new: true }
+    { returnNewDocument: true }
   )
     .then((docs) => res.send(docs))
     .catch((err) => res.status(500).send({ message: err }));

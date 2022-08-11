@@ -14,16 +14,15 @@ export default function Profil() {
   const inputPosition = useRef();
   const dispatch = useDispatch();
 
-  const editProfil = async (e) => {
+  const editProfil = (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("picture", file);
     data.append("position", inputPosition.current.value);
 
-    await axios
+    axios
       .put(`${process.env.REACT_APP_API_URL}api/user/${userData._id}`, data)
       .then((res) => {
-        console.log(res.data);
         dispatch(updateUserData(res.data));
       })
       .catch((err) => {

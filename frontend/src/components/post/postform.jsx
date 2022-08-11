@@ -14,21 +14,24 @@ export default function PostForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (message || picture) {
+      const postData = new FormData();
+      postData.append("message", message);
+      postData.append("picture", picture);
+      postData.append("posterId", userData._id);
 
-    const postData = new FormData();
-    postData.append("message", message);
-    postData.append("picture", picture);
-    postData.append("posterId", userData._id);
-
-    axios
-      .post(`${process.env.REACT_APP_API_URL}api/post`, postData)
-      .then((res) => {
-        dispatch(addPost(res));
-        dispatch(setAllPosts());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .post(`${process.env.REACT_APP_API_URL}api/post`, postData)
+        .then((res) => {
+          dispatch(addPost(res.data));
+          dispatch(setAllPosts());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Veuillez saisir votre message");
+    }
   };
 
   return (

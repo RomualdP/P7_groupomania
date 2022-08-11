@@ -9,7 +9,7 @@ module.exports.getAllUsers = async (req, res) => {
     .catch((error) => res.status(404).json({ error }));
 };
 
-module.exports.getOneUser = async (req, res) => {
+module.exports.getOneUser = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
@@ -20,7 +20,7 @@ module.exports.getOneUser = async (req, res) => {
     .catch((error) => res.status(404).json({ error }));
 };
 
-module.exports.updateUser = async (req, res) => {
+module.exports.updateUser = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
   req.file
@@ -53,7 +53,7 @@ module.exports.updateUser = async (req, res) => {
         .catch((error) => res.status(400).json({ error }));
 };
 
-module.exports.deleteUser = async (req, res) => {
+module.exports.deleteUser = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
