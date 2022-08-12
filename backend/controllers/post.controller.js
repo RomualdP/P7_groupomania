@@ -26,17 +26,19 @@ module.exports.createPost = async (req, res) => {
       comments: [],
     };
   }
-  const post = new PostModel(postData);
 
-  post
-    .save()
-    .then(() => res.status(201).json({ message: "Post créé !" }))
-    .catch((error) => res.status(400).json({ error }));
+  try {
+    const post = await PostModel.create(postData);
+    res.status(201).send(post);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports.updatePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
+
   let updatedRecord = {};
 
   if (req.file) {
@@ -68,17 +70,25 @@ module.exports.updatePost = (req, res) => {
 module.exports.deletePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
+
+  console.log(req.body);
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
-      const filename = post.picture.split("/images/")[1];
-      console.log(filename);
-      fs.unlink(`images/${filename}`, () => {
+      if (post.picture) {
+        const filename = post.picture.split("/images/")[1];
+        fs.unlink(`../../frontend/public/images/${filename}`, () => {
+          PostModel.deleteOne({ _id: req.params.id })
+            .then(() => {
+              res.status(200).json({ message: "Objet supprimé !" });
+            })
+            .catch((error) => res.status(401).json({ error }));
+        });
+      } else
         PostModel.deleteOne({ _id: req.params.id })
           .then(() => {
             res.status(200).json({ message: "Objet supprimé !" });
           })
           .catch((error) => res.status(401).json({ error }));
-      });
     })
     .catch((error) => res.status(500).json({ error }));
 };

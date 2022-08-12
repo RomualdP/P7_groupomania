@@ -2,15 +2,16 @@ import "../../style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faPaperPlane } from "@fortawesome/pro-light-svg-icons";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
-import { addPost, setAllPosts } from "../../feature/post.slice";
+import { addPost } from "../../feature/post.slice";
 
-export default function PostForm() {
+export default function PostForm({ getAllPosts }) {
   const userData = useSelector((state) => state.user.user);
   const [message, setMessage] = useState();
   const [picture, setPicture] = useState();
   const dispatch = useDispatch();
+  const formRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,8 +24,10 @@ export default function PostForm() {
       axios
         .post(`${process.env.REACT_APP_API_URL}api/post`, postData)
         .then((res) => {
+          console.log(res.data);
           dispatch(addPost(res.data));
-          dispatch(setAllPosts());
+          getAllPosts();
+          formRef.reset();
         })
         .catch((err) => {
           console.log(err);
@@ -44,7 +47,7 @@ export default function PostForm() {
           Bonjour {userData.firstname}, quoi de neuf aujourd'hui ?
         </p>
       </div>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="post" ref={formRef}>
         <textarea
           type="text"
           name="message"
@@ -63,7 +66,7 @@ export default function PostForm() {
               onChange={(e) => setPicture(e.target.files[0])}
             />
           </label>
-          <button type="submit" className="postform--submit">
+          <button className="postform--submit" onClick={handleSubmit}>
             <FontAwesomeIcon icon={faPaperPlane} size="xl" />
             <p>Envoyer</p>
           </button>

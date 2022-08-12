@@ -8,7 +8,6 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUserData } from "./feature/user.slice";
 import { setAllUsersData } from "./feature/users.slice";
-import { setAllPosts } from "./feature/post.slice";
 
 function App() {
   const [uid, setUid] = useState(null);
@@ -39,14 +38,6 @@ function App() {
       dispatch(setAllUsersData(res.data));
     });
   };
-  const getAllPosts = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}api/post/`).then((res) => {
-      dispatch(setAllPosts(res.data));
-    });
-  };
-  useEffect(() => {
-    getAllPosts();
-  });
 
   useEffect(() => {
     getAllUsersData();

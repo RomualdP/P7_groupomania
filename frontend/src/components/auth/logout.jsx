@@ -24,6 +24,7 @@ const Logout = () => {
 
   return (
     <li onClick={logout}>
+      <p>Se déconnecter</p>{" "}
       <span>
         <FontAwesomeIcon icon={faRightFromBracket} />
       </span>

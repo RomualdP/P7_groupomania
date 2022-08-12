@@ -27,7 +27,6 @@ header {
 }
 
 nav {
-    width: 300px;
     color: $colorPrimary;
     margin-right: 10px;
     & ul{
@@ -35,8 +34,19 @@ nav {
     flex-direction: row;
     justify-content: space-around;   
     align-items: center;
+    opacity: 70%;
 
     } 
+    & li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+    }
+    & p {
+        font-size: 1rem;
+        margin-right: 10px;
+    }
     & span {
         font-size: 24px;
     } 
