@@ -13,6 +13,8 @@ router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getOneUser);
 router.put("/:id", multer, userController.updateUser);
 router.delete("/:id", userController.deleteUser);
+
+// routes for further features
 router.patch("/follow/:id", userController.follow);
 router.patch("/unfollow/:id", userController.unfollow);
 

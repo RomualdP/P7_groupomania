@@ -20,8 +20,11 @@ export default function MostPopular({ post }) {
             alt="profil"
           />
         </div>
-
-        <img src={post.picture} alt="illustration du post" />
+        {post.picture ? (
+          <img src={post.picture} alt="illustration du post" />
+        ) : (
+          <img src="./images/icon.png" alt="illustration du post" />
+        )}
 
         <div className="mostpopular--card__description">
           <span>

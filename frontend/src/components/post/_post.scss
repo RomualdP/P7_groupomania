@@ -2,6 +2,10 @@
     margin: 20px;
     margin-bottom: 40px;
     padding: 20px;
+    background-color: #fff;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        margin: 20px 0;
+    }
     &:hover {
         transform: scale(1.005);
         transition: 0.5s;
@@ -107,6 +111,10 @@
     margin: 20px;
     margin-bottom: 40px;
     padding: 20px;
+    background-color: #fff;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        margin: 20px 0;
+    }
     &--heading {
         display: flex;
         flex-direction: row;
@@ -114,7 +122,8 @@
         margin-bottom: 10px;
     }
     &--grettings {
-        margin-left: 10px;
+        margin: 0 0 0 10px;
+
     }
     &--options {
         display: flex;
@@ -134,16 +143,25 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+            margin: 10px 0 0 0;
+        }
         &:hover {
             background-color: darken($colorSecondary, 3%);
         }
         &>p {
             margin: 0 0 0 10px;
+            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+                display: none;
+            }
         }
     }
     &--submit {
         &>p {
             margin: 0 0 0 10px;
+            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+                display: none;
+            }
         }
     }
     

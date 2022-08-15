@@ -1,6 +1,9 @@
 .mostpopular {
     position: fixed;
     width: 300px;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        display: none;
+    }
     &--card {
     position: relative;
     height: 300px;

@@ -1,20 +1,21 @@
 footer {
-    position: fixed;
-    bottom: 0;
+   
     width: 100%;
     padding: 10px;
     background-color: #fff;
     color: $colorTertiary;
     
     & ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-around;
+    & li {
+        text-align: center;
+    }
     }
 }
 
 .footer--container {
     max-width: 1440px;
     margin: auto;
-
 }

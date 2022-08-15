@@ -13,7 +13,7 @@ export default function Header() {
         <div className="header--logo">
           <Link to="/">
             {" "}
-            <img src="../images/icon-left-font.png" alt="logo" />
+            <img src="../images/icon-left-font.svg" alt="logo" />
           </Link>
         </div>
         {uid ? (

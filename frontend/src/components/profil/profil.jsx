@@ -3,11 +3,12 @@ import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserData } from "../../feature/user.slice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/pro-light-svg-icons";
+import { faPenToSquare, faTrash } from "@fortawesome/pro-light-svg-icons";
 import { dateParser } from "../utils";
 import axios from "axios";
+import cookie from "js-cookie";
 
-export default function Profil(getAllUsersData) {
+export default function Profil() {
   const userData = useSelector((state) => state.user.user);
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState();
@@ -28,7 +29,6 @@ export default function Profil(getAllUsersData) {
       );
       console.log(res);
       dispatch(updateUserData(res.data));
-      getAllUsersData();
       formRef.current.reset();
       setEdit(!edit);
     } catch (e) {
@@ -36,8 +36,27 @@ export default function Profil(getAllUsersData) {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const removeCookie = (key) => {
+      if (window !== "undefined") {
+        cookie.remove(key, { expires: 1 });
+      }
+    };
+    if (window.confirm("Êtes-vous sûre de vouloir supprimer votre compte ?")) {
+      try {
+        await axios
+          .delete(`${process.env.REACT_APP_API_URL}api/user/${userData._id}`)
+          .then(() => removeCookie(`jwt`));
+        window.location = "/";
+      } catch (e) {
+        console.log(e);
+      }
+    } else return;
+  };
+
   return (
-    <div>
+    <div className="profil--container">
       <div className="profil">
         <div className="profil--bloc shadow-1 rounded--box">
           <h3>
@@ -56,6 +75,7 @@ export default function Profil(getAllUsersData) {
               icon={faPenToSquare}
               onClick={(e) => setEdit(!edit)}
             />
+            <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
           </span>
 
           {edit && (

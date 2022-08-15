@@ -4,9 +4,36 @@ main {
     max-width: 1440px;
     margin: auto;
     margin-top: 100px;
-    margin-bottom: 80px;
+
     display: grid;
     grid-template-columns: 300px 1fr 300px;
     grid-gap: 32px;
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        grid-template-columns: 1fr;
+        margin-top: 45px;
+    }
 }
 
+.mobileNav--container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #fff;
+    width: 100vw;
+    color: $colorPrimary;
+    font-size: 20px;
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    text-align: center;
+    @media only screen and (min-device-width : 994px)  {
+       display: none;
+    }
+}
+.postIcon {
+    color: $colorPrimary;
+    font-size: 3rem;
+    margin-top: -30px;
+    scroll-margin-top: 50px;
+   filter:drop-shadow(0px 5px 5px rgb(253 45 1 / 0.5));
+} 

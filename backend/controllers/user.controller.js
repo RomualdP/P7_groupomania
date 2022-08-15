@@ -68,14 +68,20 @@ module.exports.deleteUser = (req, res) => {
   UserModel.findOne({ _id: req.params.id }).then((user) => {
     if (user.picture) {
       const filename = user.picture.split("/images/")[1];
-      fs.unlink(`http://localhost:8080/images/${filename}`, () => {
+      fs.unlink(`./images/${filename}`, () => {
         UserModel.deleteOne({ _id: req.params.id })
           .then(() => res.status(200).json({ message: "Deleted!" }))
           .catch((error) => res.status(400).json({ error }));
       });
+    } else {
+      UserModel.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: "Deleted!" }))
+        .catch((error) => res.status(400).json({ error }));
     }
   });
 };
+
+// Routes available for futher features to be deployed
 
 module.exports.follow = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))

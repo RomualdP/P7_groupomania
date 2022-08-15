@@ -28,7 +28,6 @@ export default function PostForm({ getAllPosts }) {
           dispatch(addPost(res.data));
           getAllPosts();
           formRef.current.reset();
-          alert();
         })
         .catch((err) => {
           console.log(err);
@@ -39,7 +38,7 @@ export default function PostForm({ getAllPosts }) {
   };
 
   return (
-    <div className="postform shadow-1 rounded--box">
+    <div className="postform shadow-1 rounded--box" id="postform">
       <div className="postform--heading">
         <div className="profilPic-preview">
           <img src={userData.picture} alt="" />

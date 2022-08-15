@@ -6,12 +6,16 @@ import Profil from "../profil/profil";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllPosts } from "../../feature/post.slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MostPopular from "../mostpopular/mostpopular";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/pro-light-svg-icons";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
-export default function Main(getAllUsersData) {
+export default function Main() {
   const postData = useSelector((state) => state.post.post);
   const dispatch = useDispatch();
+  const [openProfil, setOpenProfil] = useState(true);
   const postDataToSort = [...postData];
   const mostLikedPosts = postDataToSort
     .sort((a, b) => {
@@ -34,9 +38,15 @@ export default function Main(getAllUsersData) {
     getAllPosts();
   }, []);
 
+  useEffect(() => {
+    if (window.innerWidth < 400) {
+      setOpenProfil(false);
+    }
+  }, []);
+
   return (
     <main className="container">
-      <Profil getAllUsersData={getAllUsersData} />
+      {openProfil ? <Profil /> : <div></div>}
       <div className="feed--post rounded--box shadow-1">
         {/* <!-- postform section  --> */}
         <PostForm getAllPosts={getAllPosts} />
@@ -45,8 +55,9 @@ export default function Main(getAllUsersData) {
         {/* <!-- start of post  --> */}
         <div>
           {postData.map((post) => {
-            console.log(post);
-            return <Post post={post} getAllPosts={getAllPosts} />;
+            return (
+              <Post post={post} getAllPosts={getAllPosts} key={post._id} />
+            );
           })}
         </div>
 
@@ -62,6 +73,22 @@ export default function Main(getAllUsersData) {
         </div>
 
         {/* <!-- end of MostPopularPosts --> */}
+      </div>
+      <div>
+        <div className="mobileNav--container">
+          <span></span>
+          <span className="postIcon">
+            <a href="#postform">
+              <FontAwesomeIcon icon={faCirclePlus} />
+            </a>
+          </span>
+          <span>
+            <FontAwesomeIcon
+              icon={faUser}
+              onClick={() => setOpenProfil(!openProfil)}
+            />
+          </span>
+        </div>
       </div>
     </main>
   );

@@ -1,6 +1,11 @@
 .profil {
     position: fixed;
     width: 300px;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 70vw;
+        margin-top: 60px;
+        z-index: 100;
+    }
     &--bloc {
         display: flex;
         flex-direction: column;
@@ -31,6 +36,7 @@
                 border: none;
                 box-shadow: inset rgba(0, 0, 0, 0.24) 0px 1px 4px;
                 height: 2rem;
+                margin-bottom: 20px;
             }
 
         }
@@ -42,6 +48,17 @@
         position: absolute;
         top: 20px;
         right: 20px;
+        & > * {
+            margin-left: 10px;
+        }
+    }
+    &--deleteButton {
+        background-color: $colorPrimary;
+        opacity: 50%;
+        border: 2px solid red;
+        &:hover {
+            opacity: 1;
+        }
     }
 }
 
@@ -59,4 +76,11 @@
     & input {
         display: none;
     }
+}
+
+.profil--container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 0;
 }

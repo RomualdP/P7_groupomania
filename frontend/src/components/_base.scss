@@ -5,11 +5,15 @@
 *::after {
     box-sizing: border-box;
 }
+html {
+    scroll-padding-top: 100px
+}
 body {
     margin:0;
     font-family: 'Lato', sans-serif;
     background-color: #F8F8F8;
     position: relative;
+   
 }
 a {
     text-decoration: none;
@@ -45,6 +49,9 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        margin: 0;
+    }
     &:hover {
         background-color: darken($colorSecondary, 3%);
     }
