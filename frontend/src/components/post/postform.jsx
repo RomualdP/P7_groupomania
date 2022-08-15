@@ -27,7 +27,8 @@ export default function PostForm({ getAllPosts }) {
           console.log(res.data);
           dispatch(addPost(res.data));
           getAllPosts();
-          formRef.reset();
+          formRef.current.reset();
+          alert();
         })
         .catch((err) => {
           console.log(err);
@@ -47,7 +48,7 @@ export default function PostForm({ getAllPosts }) {
           Bonjour {userData.firstname}, quoi de neuf aujourd'hui ?
         </p>
       </div>
-      <form action="post" ref={formRef}>
+      <form action="post" onSubmit={handleSubmit} ref={formRef}>
         <textarea
           type="text"
           name="message"
@@ -66,7 +67,7 @@ export default function PostForm({ getAllPosts }) {
               onChange={(e) => setPicture(e.target.files[0])}
             />
           </label>
-          <button className="postform--submit" onClick={handleSubmit}>
+          <button type="submit" className="postform--submit">
             <FontAwesomeIcon icon={faPaperPlane} size="xl" />
             <p>Envoyer</p>
           </button>

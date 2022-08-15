@@ -42,6 +42,7 @@ export default function Post({ post, getAllPosts }) {
         data
       );
       getAllPosts();
+      setEditPost(!editPost);
     } catch (e) {
       console.log(e);
     }

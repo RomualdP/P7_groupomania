@@ -14,7 +14,7 @@ module.exports.createPost = async (req, res) => {
     postData = {
       posterId: req.body.posterId,
       message: req.body.message,
-      picture: `../images/${req.file.filename}`,
+      picture: `http://localhost:8080/images/${req.file.filename}`,
       likers: [],
       comments: [],
     };
@@ -44,27 +44,47 @@ module.exports.updatePost = (req, res) => {
   if (req.file) {
     updatedRecord = {
       message: req.body.message,
-      picture: `../images/${req.file.filename}`,
+      picture: `http://localhost:8080/images/${req.file.filename}`,
     };
   } else {
     updatedRecord = {
       message: req.body.message,
     };
   }
-
-  PostModel.updateOne(
-    { _id: req.params.id },
-    {
-      $set: updatedRecord,
-    },
-    {
-      new: true,
-    },
-    (err, docs) => {
-      if (!err) res.send(docs);
-      else console.log("il y a une erreur" + err);
+  PostModel.findOne({ _id: req.params.id }).then((post) => {
+    if (post.picture) {
+      const filename = post.picture.split("/images/")[1];
+      fs.unlink(`./images/${filename}`, () => {
+        PostModel.updateOne(
+          { _id: req.params.id },
+          {
+            $set: updatedRecord,
+          },
+          {
+            new: true,
+          },
+          (err, docs) => {
+            if (!err) res.send(docs);
+            else console.log("il y a une erreur" + err);
+          }
+        );
+      });
+    } else {
+      PostModel.updateOne(
+        { _id: req.params.id },
+        {
+          $set: updatedRecord,
+        },
+        {
+          new: true,
+        },
+        (err, docs) => {
+          if (!err) res.send(docs);
+          else console.log("il y a une erreur" + err);
+        }
+      );
     }
-  );
+  });
 };
 
 module.exports.deletePost = (req, res) => {
@@ -76,7 +96,7 @@ module.exports.deletePost = (req, res) => {
     .then((post) => {
       if (post.picture) {
         const filename = post.picture.split("/images/")[1];
-        fs.unlink(`../../frontend/public/images/${filename}`, () => {
+        fs.unlink(`./images/${filename}`, () => {
           PostModel.deleteOne({ _id: req.params.id })
             .then(() => {
               res.status(200).json({ message: "Objet supprimé !" });

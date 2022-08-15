@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
     position: {
       type: String,
       max: 1024,
+      default: "Non renseigné",
     },
     following: {
       type: [String],

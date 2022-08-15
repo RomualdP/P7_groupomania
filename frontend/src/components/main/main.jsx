@@ -9,7 +9,7 @@ import { setAllPosts } from "../../feature/post.slice";
 import { useEffect } from "react";
 import MostPopular from "../mostpopular/mostpopular";
 
-export default function Main() {
+export default function Main(getAllUsersData) {
   const postData = useSelector((state) => state.post.post);
   const dispatch = useDispatch();
   const postDataToSort = [...postData];
@@ -36,7 +36,7 @@ export default function Main() {
 
   return (
     <main className="container">
-      <Profil />
+      <Profil getAllUsersData={getAllUsersData} />
       <div className="feed--post rounded--box shadow-1">
         {/* <!-- postform section  --> */}
         <PostForm getAllPosts={getAllPosts} />

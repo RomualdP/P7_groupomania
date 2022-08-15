@@ -1,5 +1,6 @@
 const UserModel = require("../models/user.model");
 const ObjectID = require("mongoose").Types.ObjectId;
+const fs = require("fs");
 
 module.exports.getAllUsers = async (req, res) => {
   const users = await UserModel.find()
@@ -24,20 +25,27 @@ module.exports.updateUser = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
   req.file
-    ? UserModel.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $set: {
-            position: req.body.position,
-            picture: `../images/${req.file.filename}`,
-          },
-        },
-        {
-          returnOriginal: false,
+    ? UserModel.findOne({ _id: req.params.id }).then((user) => {
+        if (user.picture) {
+          const filename = user.picture.split("/images/")[1];
+          fs.unlink(`./images/${filename}`, () => {
+            UserModel.findOneAndUpdate(
+              { _id: req.params.id },
+              {
+                $set: {
+                  position: req.body.position,
+                  picture: `http://localhost:8080/images/${req.file.filename}`,
+                },
+              },
+              {
+                returnOriginal: false,
+              }
+            )
+              .then((user) => res.status(200).json(user))
+              .catch((error) => res.status(400).json({ error }));
+          });
         }
-      )
-        .then((user) => res.status(200).json(user))
-        .catch((error) => res.status(400).json({ error }))
+      })
     : UserModel.findOneAndUpdate(
         { _id: req.params.id },
         {
@@ -57,9 +65,16 @@ module.exports.deleteUser = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
-  UserModel.deleteOne({ _id: req.params.id })
-    .then(() => res.status(200).json({ message: "Deleted!" }))
-    .catch((error) => res.status(400).json({ error }));
+  UserModel.findOne({ _id: req.params.id }).then((user) => {
+    if (user.picture) {
+      const filename = user.picture.split("/images/")[1];
+      fs.unlink(`http://localhost:8080/images/${filename}`, () => {
+        UserModel.deleteOne({ _id: req.params.id })
+          .then(() => res.status(200).json({ message: "Deleted!" }))
+          .catch((error) => res.status(400).json({ error }));
+      });
+    }
+  });
 };
 
 module.exports.follow = async (req, res) => {

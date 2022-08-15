@@ -49,7 +49,10 @@ function App() {
         <div>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/"
+              element={<Home getAllUsersData={getAllUsersData} />}
+            ></Route>
           </Routes>
           <Footer />
         </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData, updateUserData } from "../../feature/user.slice";
+import { updateUserData } from "../../feature/user.slice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/pro-light-svg-icons";
 import { dateParser } from "../utils";
 import axios from "axios";
 
-export default function Profil() {
+export default function Profil(getAllUsersData) {
   const userData = useSelector((state) => state.user.user);
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState();
@@ -21,7 +21,6 @@ export default function Profil() {
     data.append("picture", file);
     data.append("position", inputPosition.current.value);
 
-    console.log(inputPosition.current.value);
     try {
       const res = await axios.put(
         `${process.env.REACT_APP_API_URL}api/user/${userData._id}`,
@@ -29,7 +28,9 @@ export default function Profil() {
       );
       console.log(res);
       dispatch(updateUserData(res.data));
+      getAllUsersData();
       formRef.current.reset();
+      setEdit(!edit);
     } catch (e) {
       console.log(e);
     }
@@ -73,6 +74,7 @@ export default function Profil() {
                 type="text"
                 id="position"
                 name="position"
+                defaultValue={userData.position}
                 ref={inputPosition}
               />
               <button type="submit">Envoyer</button>

@@ -25,7 +25,6 @@ export default function PostCommentEdit({ comment, post, getAllPosts }) {
     <>
       {(comment.commenterId === userData._id || userData.isAdmin) && (
         <span className="post--edit">
-          <FontAwesomeIcon icon={faEdit} />{" "}
           <FontAwesomeIcon icon={faTrash} onClick={handleDeleteComment} />
         </span>
       )}
