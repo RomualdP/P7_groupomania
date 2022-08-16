@@ -135,17 +135,16 @@ export default function Post({ post, getAllPosts }) {
             </div>
           </div>
         </div>
-        <div className="post--edit">
-          {post.posterId === userData._id && (
+
+        {(post.posterId === userData._id || userData.isAdmin) && (
+          <div className="post--edit">
             <FontAwesomeIcon
               icon={faEdit}
               onClick={(e) => setEditPost(!editPost)}
             />
-          )}
-          {(post.posterId === userData._id || userData.isAdmin) && (
             <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
-          )}
-        </div>
+          </div>
+        )}
       </div>
       {editPost ? (
         <>

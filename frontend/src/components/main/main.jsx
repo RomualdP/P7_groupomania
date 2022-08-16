@@ -22,6 +22,8 @@ import MostPopular from "../mostpopular/mostpopular";
 export default function Main() {
   const postData = useSelector((state) => state.post.post);
   const dispatch = useDispatch();
+  const [count, setCount] = useState(5);
+  const [loadPost, setloadPost] = useState(true);
   const [openProfil, setOpenProfil] = useState(true);
   // Copy and sort of the post array to display mostpopular post
   const postDataToSort = [...postData];
@@ -31,20 +33,36 @@ export default function Main() {
     })
     .slice(0, 2);
 
-  const getAllPosts = async () => {
+  const getAllPosts = async (num) => {
     try {
       await axios
         .get(`${process.env.REACT_APP_API_URL}api/post/`)
         .then((res) => {
-          dispatch(setAllPosts(res.data));
+          const array = res.data.slice(0, num);
+          dispatch(setAllPosts(array));
         });
     } catch (e) {
       console.log(e);
     }
   };
+  const loadMore = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >
+      document.scrollingElement.scrollHeight
+    ) {
+      setloadPost(true);
+    }
+  };
   useEffect(() => {
-    getAllPosts();
-  }, []);
+    if (loadPost) {
+      getAllPosts(count);
+      setloadPost(false);
+      setCount(count + 5);
+    }
+
+    window.addEventListener("scroll", loadMore);
+    return () => window.removeEventListener("scroll", loadMore);
+  }, [loadPost]);
 
   useEffect(() => {
     if (window.innerWidth < 400) {
