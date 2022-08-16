@@ -50,6 +50,10 @@
         right: 20px;
         & > * {
             margin-left: 10px;
+            opacity: 50%;
+            &:hover{
+                opacity: 100%;
+            }
         }
     }
     &--deleteButton {

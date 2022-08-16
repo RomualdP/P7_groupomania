@@ -8,7 +8,6 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUserData } from "./feature/user.slice";
 import { setAllUsersData } from "./feature/users.slice";
-import ProfilPage from "./page/ProfilPage";
 
 function App() {
   const [uid, setUid] = useState(null);
@@ -47,11 +46,10 @@ function App() {
   return (
     <UidContext.Provider value={uid}>
       <Router>
-        <div>
+        <div className="main--container">
           <Header />
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/profil" element={<ProfilPage />}></Route>
           </Routes>
           <Footer />
         </div>

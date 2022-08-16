@@ -25,8 +25,8 @@ export default function SignupForm() {
         url: `${process.env.REACT_APP_API_URL}api/user/register`,
         withCredentials: true,
         data: {
-          email,
-          password,
+          email: email,
+          password: password,
         },
       })
         .then((res) => {
@@ -56,8 +56,7 @@ export default function SignupForm() {
             name="email"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="E-mail"
+            placeholder="prenom.nom@groupomania.fr"
             className="login--form__input"
           />
           <div className="emailError"></div>
@@ -68,7 +67,6 @@ export default function SignupForm() {
             name="password"
             id="password"
             onChange={(e) => setPassword(e.target.value)}
-            value={password}
             placeholder="Mot de passe"
             className="login--form__input"
           />
@@ -80,7 +78,6 @@ export default function SignupForm() {
             name="passwordCheck"
             id="passwordCheck"
             onChange={(e) => setPasswordCheck(e.target.value)}
-            value={passwordCheck}
             placeholder="Confirmation mot de passe"
             className="login--form__input"
           />

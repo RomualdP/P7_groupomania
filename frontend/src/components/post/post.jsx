@@ -8,7 +8,7 @@ import {
   faPaperPlane,
 } from "@fortawesome/pro-light-svg-icons";
 import { faHeart as faSHeart } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { timestampParser } from "../utils";
 import PostComment from "./postcomment";
@@ -28,7 +28,7 @@ export default function Post({ post, getAllPosts }) {
     if (post.likers.includes(userData._id)) {
       setIsLiked(true);
     }
-  }, []);
+  }, [post.likers, userData._id]);
 
   const handleEdit = async (e) => {
     e.preventDefault();

@@ -8,15 +8,15 @@ function Home() {
   const uid = useContext(UidContext);
 
   return (
-    <div>
+    <>
       {uid ? (
         <Main />
       ) : (
-        <div>
+        <div className="log--container">
           <Log />
         </div>
       )}
-    </div>
+    </>
   );
 }
 

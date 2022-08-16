@@ -1,6 +1,4 @@
 import "../../style.css";
-import { useContext } from "react";
-import { UidContext } from "../../AppContext";
 
 export default function Footer() {
   return (

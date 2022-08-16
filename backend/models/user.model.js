@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
 
+var validateEmail = function (email) {
+  var re = /^((?!\.)[a-zA-Z]+)\.((?!\.)[a-zA-Z]+)(@\groupomania)(\.fr)$/;
+  return re.test(email);
+};
+
 const userSchema = new mongoose.Schema(
   {
     firstname: {
@@ -13,7 +18,10 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      validate: [isEmail],
+      validate: [
+        validateEmail,
+        "Merci d'utiliser une adresse au format prenom.nom@groupomania.fr",
+      ],
       lowercase: true,
       unique: true,
       trim: true,

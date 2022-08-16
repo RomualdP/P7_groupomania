@@ -1,21 +1,29 @@
 import React from "react";
-import Post from "../post/post";
-import "../../style.css";
-import PostForm from "../post/postform";
-import Profil from "../profil/profil";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllPosts } from "../../feature/post.slice";
 import { useEffect, useState } from "react";
-import MostPopular from "../mostpopular/mostpopular";
+import "../../style.css";
+
+// Fetching module
+import axios from "axios";
+
+// Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/pro-light-svg-icons";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+
+// Components
+
+import Post from "../post/post";
+import PostForm from "../post/postform";
+import Profil from "../profil/profil";
+import MostPopular from "../mostpopular/mostpopular";
 
 export default function Main() {
   const postData = useSelector((state) => state.post.post);
   const dispatch = useDispatch();
   const [openProfil, setOpenProfil] = useState(true);
+  // Copy and sort of the post array to display mostpopular post
   const postDataToSort = [...postData];
   const mostLikedPosts = postDataToSort
     .sort((a, b) => {
@@ -46,7 +54,9 @@ export default function Main() {
 
   return (
     <main className="container">
+      {/* A state has been added to the Profil component to manage toggle on mobile */}
       {openProfil ? <Profil /> : <div></div>}
+
       <div className="feed--post rounded--box shadow-1">
         {/* <!-- postform section  --> */}
         <PostForm getAllPosts={getAllPosts} />
@@ -54,6 +64,7 @@ export default function Main() {
 
         {/* <!-- start of post  --> */}
         <div>
+          {/* We are mapping on each post */}
           {postData.map((post) => {
             return (
               <Post post={post} getAllPosts={getAllPosts} key={post._id} />
@@ -75,6 +86,7 @@ export default function Main() {
         {/* <!-- end of MostPopularPosts --> */}
       </div>
       <div>
+        {/* Mobile action icons */}
         <div className="mobileNav--container">
           <span></span>
           <span className="postIcon">
