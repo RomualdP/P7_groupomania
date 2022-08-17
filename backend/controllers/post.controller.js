@@ -52,7 +52,7 @@ module.exports.updatePost = (req, res) => {
     };
   }
   PostModel.findOne({ _id: req.params.id }).then((post) => {
-    if (post.picture) {
+    if (req.file && post.picture) {
       const filename = post.picture.split("/images/")[1];
       fs.unlink(`./images/${filename}`, () => {
         PostModel.updateOne(
