@@ -9,7 +9,7 @@ import axios from "axios";
 
 // Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/pro-light-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 // Components

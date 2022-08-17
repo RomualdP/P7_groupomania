@@ -1,7 +1,7 @@
 import "../../style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage, faPaperPlane } from "@fortawesome/pro-light-svg-icons";
+import { faImage, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { useState, useRef } from "react";
 import axios from "axios";
 import { addPost } from "../../feature/post.slice";

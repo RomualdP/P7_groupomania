@@ -1,12 +1,13 @@
 import "../../style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/pro-light-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import {
+  faEdit,
   faHeart,
   faComment,
   faImage,
   faPaperPlane,
-} from "@fortawesome/pro-light-svg-icons";
+} from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faSHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";

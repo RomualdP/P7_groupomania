@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import cookie from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightFromBracket } from "@fortawesome/pro-light-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Logout = () => {
   const removeCookie = (key) => {
