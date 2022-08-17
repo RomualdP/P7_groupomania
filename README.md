@@ -43,6 +43,7 @@ pense à bien fournir un README avec ton code, expliquant comment installer le s
 ## Compétences clés 
 
 Création d'un site SPA dynamique avec REACT
+
 Création d'une base de donnée sécurisée et évolutive avec MongoDB
 
 ## Installation & lancement
@@ -59,7 +60,9 @@ Ouvrir le repo avec votre IDE
 Dans le dossier backend : rajouter un fichier .env dans le dossier /backend/config avec les informations suivantes :
 
 PORT = 8080
+
 MongoDBLOGIN=romualdp:UzSWAUKZ0Ijo80Qv
+
 TOKEN_SECRET=qflskdjfqodu908978JMLIHJè!§876
 
 Lancer le back
