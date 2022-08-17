@@ -56,12 +56,23 @@ git clone https://github.com/RomualdP/RomualdPiquet_3_18022022.git
 
 Ouvrir le repo avec votre IDE
 
+Dans le dossier backend : rajouter un fichier .env dans le dossier /backend/config avec les informations suivantes :
+
+PORT = 8080
+MongoDBLOGIN=romualdp:UzSWAUKZ0Ijo80Qv
+TOKEN_SECRET=qflskdjfqodu908978JMLIHJè!§876
+
 Lancer le back
 ```
 cd backend
 npm i 
 npm start
 ```
+
+Dans le dossier frontend : rajouter un fichier .env à la racine avec les informations suivantes :
+REACT_APP_API_URL=http://localhost:8080/
+
+
 Lancer le front
 ```
 cd frontend
