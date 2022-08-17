@@ -1,6 +1,7 @@
 const UserModel = require("../models/user.model");
 const ObjectID = require("mongoose").Types.ObjectId;
 const fs = require("fs");
+const PostModel = require("../models/post.model");
 
 module.exports.getAllUsers = async (req, res) => {
   const users = await UserModel.find()
@@ -61,7 +62,7 @@ module.exports.updateUser = (req, res) => {
         .catch((error) => res.status(400).json({ error }));
 };
 
-module.exports.deleteUser = (req, res) => {
+module.exports.deleteUser = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
@@ -70,12 +71,20 @@ module.exports.deleteUser = (req, res) => {
       const filename = user.picture.split("/images/")[1];
       fs.unlink(`./images/${filename}`, () => {
         UserModel.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: "Deleted!" }))
+          .then(() => {
+            PostModel.deleteMany({ posterId: req.params.id })
+              .then(() => res.status(200).json({ message: "Deleted!" }))
+              .catch((error) => res.status(400).json({ error }));
+          })
           .catch((error) => res.status(400).json({ error }));
       });
     } else {
       UserModel.deleteOne({ _id: req.params.id })
-        .then(() => res.status(200).json({ message: "Deleted!" }))
+        .then(() => {
+          PostModel.deleteMany({ posterId: req.params.id })
+            .then(() => res.status(200).json({ message: "Deleted!" }))
+            .catch((error) => res.status(400).json({ error }));
+        })
         .catch((error) => res.status(400).json({ error }));
     }
   });

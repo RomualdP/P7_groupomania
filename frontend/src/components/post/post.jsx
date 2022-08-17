@@ -182,10 +182,13 @@ export default function Post({ post, getAllPosts }) {
         </>
       ) : (
         <>
-          <div className="post--description">
-            <p>{post.message}</p>
-          </div>
-          {post?.picture && (
+          {post.message && (
+            <div className="post--description">
+              <p>{post.message}</p>
+            </div>
+          )}
+
+          {post.picture && (
             <div className="post--img">
               <img src={post.picture} alt="illustration du post" />
             </div>

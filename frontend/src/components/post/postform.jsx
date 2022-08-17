@@ -27,6 +27,7 @@ export default function PostForm({ getAllPosts }) {
           console.log(res.data);
           dispatch(addPost(res.data));
           getAllPosts();
+          resetForm();
           formRef.current.reset();
         })
         .catch((err) => {
@@ -35,6 +36,11 @@ export default function PostForm({ getAllPosts }) {
     } else {
       alert("Veuillez saisir votre message");
     }
+  };
+
+  const resetForm = () => {
+    setMessage("");
+    setPicture("");
   };
 
   return (
