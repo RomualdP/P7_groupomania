@@ -1,5 +1,7 @@
 # P7_groupomania
 
+![screenshot page d'accueil mobile](https://user.oc-static.com/upload/2022/05/25/1653474647318_icon-left-font.png)
+
 ## Description du projet 
 
 Projet final de la formation OpenClassrooms, l'objectif est de reprendre l'ensemble des connaissances mobilisées sur les précédent projets et d'y ajouter l'utilisation d'un framework frontend. J'ai choisi d'utiliser React, couplé avec Redux.
@@ -30,7 +32,7 @@ pour la base de données, tu peux utiliser les outils de ton choix. Tu peux util
 
 pense à bien fournir un README avec ton code, expliquant comment installer le site sur un nouveau poste."
 
-![screenshot page d'accueil mobile]()
+![screenshot page d'accueil mobile](https://user.oc-static.com/upload/2022/05/25/1653474647318_icon-left-font.png)
 
 ## Stack technique : Projet MERN
 
