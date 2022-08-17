@@ -22,7 +22,6 @@ export default function Post({ post, getAllPosts }) {
   const [openComments, setOpenComments] = useState(false);
   const inputMessage = useRef();
   const [picture, setPicture] = useState();
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     if (post.likers.includes(userData._id)) {
