@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { timestampParser } from "../utils";
-// import axios from "axios";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import PostCommentEdit from "./postcommentedit";
 
@@ -44,7 +41,7 @@ export default function PostComment({ post, getAllPosts }) {
         </div>
         <input type="text" onChange={(e) => setText(e.target.value)} />
         <button type="submit">
-          <FontAwesomeIcon icon={faPaperPlane} />
+          <img src="./images/icons/paper-plane-light.svg" alt="envoyer" />
         </button>
       </form>
 

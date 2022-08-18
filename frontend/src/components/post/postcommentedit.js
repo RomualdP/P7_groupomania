@@ -1,7 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 
 export default function PostCommentEdit({ comment, post, getAllPosts }) {
@@ -25,7 +23,11 @@ export default function PostCommentEdit({ comment, post, getAllPosts }) {
     <>
       {(comment.commenterId === userData._id || userData.isAdmin) && (
         <span className="post--edit">
-          <FontAwesomeIcon icon={faTrash} onClick={handleDeleteComment} />
+          <img
+            src="./images/icons/trash-light.svg"
+            alt="supprimer commentaire"
+            onClick={handleDeleteComment}
+          />
         </span>
       )}
     </>

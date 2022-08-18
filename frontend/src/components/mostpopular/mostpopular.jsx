@@ -1,5 +1,3 @@
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import "../../style.css";
 
@@ -27,9 +25,7 @@ export default function MostPopular({ post }) {
         )}
 
         <div className="mostpopular--card__description">
-          <span>
-            <FontAwesomeIcon icon={faHeart} />
-          </span>
+          <img src="./images/icons/heart-solid.svg" alt="Coeur" />
           <span>{post.likers.length}</span>
           <p>{post.message}</p>
         </div>

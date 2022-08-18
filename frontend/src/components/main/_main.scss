@@ -31,9 +31,12 @@ main {
     }
 }
 .postIcon {
-    color: $colorPrimary;
-    font-size: 3rem;
-    margin-top: -30px;
-    scroll-margin-top: 50px;
-   filter:drop-shadow(0px 5px 5px rgb(253 45 1 / 0.5));
+    & img {
+        filter: $filterColorPrimary;
+        height: 48px;
+        width: 48px;
+        margin-top: -30px;
+        scroll-margin-top: 50px;
+       filter:drop-shadow(0px 5px 5px rgb(253 45 1 / 0.5));
+    }
 } 

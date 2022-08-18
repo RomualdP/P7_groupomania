@@ -2,20 +2,20 @@ import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserData } from "../../feature/user.slice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { dateParser } from "../utils";
 import axios from "axios";
 import cookie from "js-cookie";
 
 export default function Profil() {
+  // Redux hooks
   const userData = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  // form States
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState();
+
   const formRef = useRef();
   const inputPosition = useRef();
-  const dispatch = useDispatch();
 
   const editProfil = async (e) => {
     e.preventDefault();
@@ -72,11 +72,16 @@ export default function Profil() {
             {dateParser(userData.createdAt)}
           </span>
           <span className="profil--editbutton">
-            <FontAwesomeIcon
-              icon={faPenToSquare}
+            <img
+              src="./images/icons/pen-to-square-light.svg"
+              alt="ouvrir editer"
               onClick={(e) => setEdit(!edit)}
             />
-            <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
+            <img
+              src="./images/icons/trash-light.svg"
+              alt="supprimer compte"
+              onClick={handleDelete}
+            />
           </span>
 
           {edit && (

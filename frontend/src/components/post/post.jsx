@@ -1,14 +1,4 @@
 import "../../style.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import {
-  faEdit,
-  faHeart,
-  faComment,
-  faImage,
-  faPaperPlane,
-} from "@fortawesome/free-regular-svg-icons";
-import { faHeart as faSHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { timestampParser } from "../utils";
@@ -138,11 +128,16 @@ export default function Post({ post, getAllPosts }) {
 
         {(post.posterId === userData._id || userData.isAdmin) && (
           <div className="post--edit">
-            <FontAwesomeIcon
-              icon={faEdit}
+            <img
+              src="./images/icons/pen-to-square-light.svg"
+              alt="edit"
               onClick={(e) => setEditPost(!editPost)}
             />
-            <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
+            <img
+              src="./images/icons/trash-light.svg"
+              alt="edit"
+              onClick={handleDelete}
+            />
           </div>
         )}
       </div>
@@ -159,7 +154,7 @@ export default function Post({ post, getAllPosts }) {
             />
             <div className="postform--options">
               <label htmlFor="editPicture" className="postform--addpicture">
-                <FontAwesomeIcon icon={faImage} size="xl" />
+                <img src="./images/icons/image-light.svg" alt="envoyer" />
                 <p>Modifier l'image</p>
                 <input
                   type="file"
@@ -170,7 +165,7 @@ export default function Post({ post, getAllPosts }) {
                 />
               </label>
               <button type="submit" className="postform--submit">
-                <FontAwesomeIcon icon={faPaperPlane} size="xl" />
+                <img src="./images/icons/paper-plane-light.svg" alt="envoyer" />
                 <p>Envoyer</p>
               </button>
             </div>
@@ -198,17 +193,26 @@ export default function Post({ post, getAllPosts }) {
             <div className="post--reaction__bloc">
               <span className="post--reaction__icon">
                 {isLiked ? (
-                  <FontAwesomeIcon icon={faSHeart} onClick={handleUnlike} />
+                  <img
+                    src="./images/icons/heart-solid.svg"
+                    alt="coeur plein"
+                    onClick={handleUnlike}
+                  />
                 ) : (
-                  <FontAwesomeIcon icon={faHeart} onClick={handleLike} />
+                  <img
+                    src="./images/icons/heart-light.svg"
+                    alt="coeur vide"
+                    onClick={handleLike}
+                  />
                 )}
               </span>
               <span>{post.likers.length}</span>
             </div>
             <div className="post--reaction__bloc">
               <span className="post--reaction__icon">
-                <FontAwesomeIcon
-                  icon={faComment}
+                <img
+                  src="./images/icons/comment-light.svg"
+                  alt="coeur vide"
                   onClick={() => setOpenComments(!openComments)}
                 />
               </span>

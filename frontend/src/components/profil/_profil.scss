@@ -19,7 +19,7 @@
             opacity: 50%;
             font-size: 1rem;
         }
-        & img {
+        &>img {
             width: 80%;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             border-radius: 20px;
@@ -48,9 +48,12 @@
         position: absolute;
         top: 20px;
         right: 20px;
-        & > * {
+        & > img {
             margin-left: 10px;
             opacity: 50%;
+            height: 16px;
+            width: 16px;
+            filter: $filterColorTertiary;
             &:hover{
                 opacity: 100%;
             }

@@ -1,7 +1,5 @@
 import "../../style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { useState, useRef } from "react";
 import axios from "axios";
 import { addPost } from "../../feature/post.slice";
@@ -62,7 +60,7 @@ export default function PostForm({ getAllPosts }) {
         />
         <div className="postform--options">
           <label htmlFor="picture" className="postform--addpicture">
-            <FontAwesomeIcon icon={faImage} size="xl" />
+            <img src="./images/icons/image-light.svg" alt="envoyer" />
             <p>Ajouter une image</p>
             <input
               type="file"
@@ -73,7 +71,7 @@ export default function PostForm({ getAllPosts }) {
             />
           </label>
           <button type="submit" className="postform--submit">
-            <FontAwesomeIcon icon={faPaperPlane} size="xl" />
+            <img src="./images/icons/paper-plane-light.svg" alt="envoyer" />
             <p>Envoyer</p>
           </button>
         </div>

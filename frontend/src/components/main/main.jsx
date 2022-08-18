@@ -7,11 +7,6 @@ import "../../style.css";
 // Fetching module
 import axios from "axios";
 
-// Icons
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-
 // Components
 
 import Post from "../post/post";
@@ -22,9 +17,14 @@ import MostPopular from "../mostpopular/mostpopular";
 export default function Main() {
   const postData = useSelector((state) => state.post.post);
   const dispatch = useDispatch();
+
+  // States to manage infinite scroll
   const [count, setCount] = useState(5);
   const [loadPost, setloadPost] = useState(true);
+
+  // Toggle on mobile version
   const [openProfil, setOpenProfil] = useState(true);
+
   // Copy and sort of the post array to display mostpopular post
   const postDataToSort = [...postData];
   const mostLikedPosts = postDataToSort
@@ -109,12 +109,16 @@ export default function Main() {
           <span></span>
           <span className="postIcon">
             <a href="#postform">
-              <FontAwesomeIcon icon={faCirclePlus} />
+              <img
+                src="./images/icons/circle-plus-solid.svg"
+                alt="ajouter un nouveau post"
+              />
             </a>
           </span>
           <span>
-            <FontAwesomeIcon
-              icon={faUser}
+            <img
+              src="./images/icons/user-light.svg"
+              alt="profil utilisateur"
               onClick={() => setOpenProfil(!openProfil)}
             />
           </span>
