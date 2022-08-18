@@ -49,9 +49,7 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-        margin: 0;
-    }
+  
     &:hover {
         background-color: darken($colorSecondary, 3%);
     }

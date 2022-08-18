@@ -3,7 +3,7 @@
     margin-bottom: 40px;
     padding: 20px;
     background-color: #fff;
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    @media only screen and (min-device-width : 320px) and (max-device-width : 820px) {
         margin: 20px 0;
     }
     &:hover {
@@ -124,7 +124,7 @@
     margin-bottom: 40px;
     padding: 20px;
     background-color: #fff;
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    @media only screen and (min-device-width : 320px) and (max-device-width : 820px) {
         margin: 20px 0;
     }
     &--heading {
@@ -161,7 +161,7 @@
         flex-direction: row;
         align-items: center;
         
-        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        @media only screen and (min-device-width : 320px) and (max-device-width : 820px) {
             margin: 10px 0 0 0;
         }
         &:hover {

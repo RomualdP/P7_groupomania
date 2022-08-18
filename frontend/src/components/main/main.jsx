@@ -62,17 +62,18 @@ export default function Main() {
 
     window.addEventListener("scroll", loadMore);
     return () => window.removeEventListener("scroll", loadMore);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadPost]);
 
   useEffect(() => {
-    if (window.innerWidth < 400) {
+    if (window.innerWidth < 820) {
       setOpenProfil(false);
     }
   }, []);
 
   return (
     <main className="container">
-      {/* A state has been added to the Profil component to manage toggle on mobile */}
+      {/* A state has been added to the Profil component to manage toggle on mobile & tablet */}
       {openProfil ? <Profil /> : <div></div>}
 
       <div className="feed--post rounded--box shadow-1">
@@ -115,7 +116,7 @@ export default function Main() {
               />
             </a>
           </span>
-          <span>
+          <span className="profilIcon">
             <img
               src="./images/icons/user-light.svg"
               alt="profil utilisateur"
