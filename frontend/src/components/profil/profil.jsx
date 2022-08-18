@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserData } from "../../feature/user.slice";
+import { setAllUsersData } from "../../feature/users.slice";
 import { dateParser } from "../utils";
 import axios from "axios";
 import cookie from "js-cookie";
@@ -17,6 +18,12 @@ export default function Profil() {
   const formRef = useRef();
   const inputPosition = useRef();
 
+  const getAllUsersData = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}api/user/`).then((res) => {
+      dispatch(setAllUsersData(res.data));
+    });
+  };
+
   const editProfil = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -30,6 +37,7 @@ export default function Profil() {
       );
       console.log(res);
       dispatch(updateUserData(res.data));
+      getAllUsersData();
       formRef.current.reset();
       setEdit(!edit);
     } catch (e) {
