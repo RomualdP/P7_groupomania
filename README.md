@@ -61,7 +61,7 @@ Dans le dossier backend : rajouter un fichier .env dans le dossier /backend/conf
 
 PORT = 8080
 
-MongoDBLOGIN=romualdp:UzSWAUKZ0Ijo80Qv
+MongoDBLOGIN=// sur demande //
 
 TOKEN_SECRET=qflskdjfqodu908978JMLIHJè!§876
 
