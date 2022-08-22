@@ -15,7 +15,7 @@ router.put("/:id", multer, userController.updateUser);
 router.delete("/:id", userController.deleteUser);
 
 // routes for further features
-router.patch("/follow/:id", userController.follow);
-router.patch("/unfollow/:id", userController.unfollow);
+// router.patch("/follow/:id", userController.follow);
+// router.patch("/unfollow/:id", userController.unfollow);
 
 module.exports = router;
